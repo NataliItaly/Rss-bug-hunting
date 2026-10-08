@@ -29,25 +29,21 @@ function getFiltered() {
   console.log(search, category, sort);
 
   if (search) {
-    searched = products.filter((p) => p.name.toLowerCase().includes(search));
+    result = products.filter((p) => p.name.toLowerCase().includes(search));
   } else {
-    searched = products;
+    result = products;
   }
-  console.log('after search', searched);
+  console.log('after search', result);
   // check category
   if (category !== 'all') {
-    sorted = searched.filter((p) => p.category === category);
-  } else {
-    sorted = searched;
+    result = result.filter((p) => p.category === category);
   }
-  console.log('after category', sorted);
+  console.log('after category', result);
 
   if (sort === 'asc') {
-    result = structuredClone(sorted).sort((a, b) => a.price - b.price);
+    result = [...result].sort((a, b) => a.price - b.price);
   } else if (sort === 'desc') {
-    result = structuredClone(sorted).sort((a, b) => b.price - a.price);
-  } else {
-    result = sorted;
+    result = [...result].sort((a, b) => b.price - a.price);
   }
   console.log('after ordering', result);
 

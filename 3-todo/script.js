@@ -12,7 +12,6 @@ let nextId = 1;
 
 function addTask() {
   const text = input.value.trim();
-  console.log('text', text);
   if (text === '') {
     errorEl.hidden = false;
     return;
@@ -20,7 +19,6 @@ function addTask() {
 
   errorEl.hidden = true;
   tasks.push({ id: nextId++, text: text, done: false });
-  console.log('tasks', tasks);
   input.value = '';
 
   const currentTasks = getVisibleTasks();
@@ -43,7 +41,6 @@ function clearCompleted() {
   render();
 }
 
-// do we really need this function?
 function getVisibleTasks() {
   if (currentFilter === 'active') {
     return tasks.filter((task) => !task.done);
@@ -76,7 +73,6 @@ function render() {
     const span = document.createElement('span');
     span.className = 'task__text';
     span.textContent = task.text;
-    //span.addEventListener('click', () => toggleTask(task.id));
 
     const del = document.createElement('button');
     del.className = 'task__del';
@@ -104,7 +100,6 @@ filterButtons.forEach((btn) => {
     filterButtons.forEach((b) => b.classList.remove('active'));
     btn.classList.add('active');
     currentFilter = btn.dataset.filter;
-    console.log('current filter', currentFilter);
 
     render();
   });
